@@ -74,6 +74,7 @@ ItemType SortedLinkedList::GetNextItem(){
 }
 void SortedLinkedList::ResetList(){
   size=0;
+  currentPos=0;
 }
 void SortedLinkedList::reverse(){
 }
