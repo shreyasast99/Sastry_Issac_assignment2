@@ -26,35 +26,79 @@ int SortedLinkedList::length() const{
 
 //inserts item: beginning, middle, or end; and it the list is empty
 void SortedLinkedList::insertItem(ItemType item){
-  currentPos=head; //setting to beginning of list
-  insert->item=item; //setting the value of the item into new node
-  if(size!=0){
-    while(currentPos!=NULL){
-      predLoc=currentPos;
-      currentPos=currentPos->next;
-      //if the position has been found; need to sandwich through
-      if((predLoc->item.ComparedTo(item)==LESS)&&(currentPos->item.ComparedTo(item)==GREATER)){
-	predLoc->next=insert;
-	insert->next=currentPos;
-      }
+  //if the item has been found
+  if(searchItem(item)!=-1){
+    cout<<"Sorry. You cannot insert the duplicate item"<<endl;
+  }
+  //if the item has not been found (new item)
+  else{
+    currentPos=head; //setting to beginning of list
+    insert->item=item; //setting the value of the item into new node
+    if(size!=0){
+      while(currentPos!=NULL){
+	predLoc=currentPos;
+	currentPos=currentPos->next;
+	//if the position has been found; need to sandwich through
+	if((predLoc->item.compareTo(item)==LESS)&&(currentPos->item.compareTo(item)==GREATER)){
+	  predLoc->next=insert;
+	  insert->next=currentPos;
+	}
       //if it needs to be added in beginning (first sorted is greater than item wanted to add)
-      if((predLoc->item.ComparedTo(item)==GREATER)&&(currentPos->item.ComparedTo(item)==GREATER)){
-	insert->next=predLoc;
+	if((predLoc->item.compareTo(item)==GREATER)&&(currentPos->item.compareTo(item)==GREATER)){
+	  insert->next=predLoc;
+	}
+	//adding to end of the list
+	if((predLoc->item.compareTo(item)==LESS)&&(currentPos==NULL)){
+	  currentPos->item=item;
+	}
       }
-      //adding to end of the list
-      if((predLoc->item.ComparedTo(item)==LESS)&&(currentPos==NULL)){
-	currentPos->item=item;
-      }
-    }
-  }//if length!=0
+    }//if length!=0
   if(size==0){ 
     head->item=item; //setting the first value into head
   }
   size++; //need to increment value
+  }
 }
 
 void SortedLinkedList::deleteItem(ItemType item){
-  size--;
+  //if it is an empty list
+  if(length()==0){
+    cout<<"You cannot delete from an empty list"<<endl;
+  }
+  else if(searchItem(item)==-1){
+    cout<<"Item not found"<<endl;
+  }
+  //for everything else... regular deleting
+  else{
+    //if deleting from the middle
+    if((searchItem(item)!=0)&&(searchItem(item)!=length()-1)){
+      currentPos=head;
+      predLoc=currentPos;
+      int count=searchItem(item); //saves the index in where the item is found
+      //takes the item for the predLoc
+      for(int i=0;i<count-1;i++){
+	predLoc=predLoc->next;
+      }
+      //taking value we want to remove (current)
+      currentPos=predLoc->next;
+      //taking the post value so we can connect
+      postLoc=currentPos->next;
+      predLoc->next=postLoc; //bascially skipping the current pos because we are deleting that
+    }
+    //if it deleting from beginning
+    if(searchItem(item)==0){
+      head=head->next; //setting the actual value into the next value
+    }
+    //if it is deleting the end
+    if(searchItem(item)==length()-1){
+      currentPos=head;
+      for(int i=0;i<searchItem(item);i++){
+	currentPos=currentPos->next;
+      }
+      currentPos=NULL; //setting the last value to NULL because item is deleted 
+    }
+    size--; //size decreases if we delete an item
+  }
 }
 
 //returns the index as to where the item is found. If not foudn,returns -1
@@ -62,13 +106,15 @@ int SortedLinkedList::searchItem(ItemType item){
   currentPos=head;
   int count=-1;
   //iterates through the end
-  while(currentPos->next!=NULL){
-    if(currentPos->item.ComparedTo(item)==EQUAL){
-      count++;
-      break;
-    }
-    else{
-      count++;
+  if(size!=0){ //in case it is empty
+    while(currentPos->next!=NULL){
+      if(currentPos->item.compareTo(item)==EQUAL){
+	count++;
+	break;
+      }
+      else{
+	count++;
+      }
     }
   }
   //if count is -1, then you know it will print "not found"
@@ -84,7 +130,7 @@ ItemType SortedLinkedList::GetNextItem(){
 
 void SortedLinkedList::ResetList(){
   size=0;
-  currentPos=NULL;
+  head=NULL;
 }
 
 //reverses the linked list function 
@@ -103,8 +149,8 @@ void SortedLinkedList::reverse(){
 void SortedLinkedList::print(){
     currentPos=head;
     for(int i=0; i<length();i++){
-        cout<<currentPos->item.getValue();
-        cout<<" ";
-        currentPos=currentPos->next;
+      cout<<currentPos->item.getValue();
+      cout<<" ";
+      currentPos=currentPos->next;
     }
 }

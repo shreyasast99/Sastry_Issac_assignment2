@@ -6,9 +6,9 @@ enum Comparison{LESS,EQUAL,GREATER};
 class ItemType{
 public:
   ItemType();
-  Comparison ComparedTo(ItemType item);
+  Comparison compareTo(ItemType item);
   int getValue() const; //returns the value instance variable
-  void Initialize(int num) ;
+  void initialize(int num) ;
 private:
   int value;
 };
