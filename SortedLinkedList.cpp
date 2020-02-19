@@ -3,17 +3,25 @@
 #include "SortedLinkedList.h"
 ListNode* predLoc=NULL;
 ListNode* insert=NULL;
+ListNode* postLoc=NULL;
+
+//constructor 
 SortedLinkedList::SortedLinkedList(){
   size=0; //intializing the size into 0.
   head=NULL;
   currentPos=NULL;
 }
+
+//deallocates the memory: delete pointer in the main method
 SortedLinkedList::~SortedLinkedList(){
 }
+
 //returns the length of the linked list
 int SortedLinkedList::length() const{
   return size;
 }
+
+//inserts item: beginning, middle, or end; and it the list is empty
 void SortedLinkedList::insertItem(ItemType item){
   currentPos=head; //setting to beginning of list
   insert->item=item; //setting the value of the item into new node
@@ -39,18 +47,13 @@ void SortedLinkedList::insertItem(ItemType item){
   if(size==0){ 
     head->item=item; //setting the first value into head
   }
-  /*
-    ListNode* location;
-    location= new ListNode;
-    location->item=item;
-    location->next=head;
-    head=location;
-    size++;
-  */
+  size++; //need to increment value
 }
+
 void SortedLinkedList::deleteItem(ItemType item){
   size--;
 }
+
 //returns the index as to where the item is found. If not foudn,returns -1
 int SortedLinkedList::searchItem(ItemType item){
   currentPos=head;
@@ -68,13 +71,29 @@ int SortedLinkedList::searchItem(ItemType item){
   //if count is -1, then you know it will print "not found"
   return count;
 }
+
+//returns the next item
 ItemType SortedLinkedList::GetNextItem(){
   currentPos=currentPos->next;
   return currentPos->item;
 }
+
+
 void SortedLinkedList::ResetList(){
   size=0;
-  currentPos=0;
+  currentPos=NULL;
 }
+
+//reverses the linked list function 
 void SortedLinkedList::reverse(){
+  currentPos=head;
+  predLoc=NULL;
+  postLoc=NULL;
+  while(currentPos!=NULL){
+    postLoc=currentPos->next;
+    currentPos->next=predLoc;
+    predLoc=currentPos;
+    currentPos=postLoc;
+  }
+  head=predLoc; //preLoc is the new header
 }
