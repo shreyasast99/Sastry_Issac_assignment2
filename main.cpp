@@ -1,8 +1,14 @@
 #include <iostream>
 #include <string>
 #include "SortedLinkedList.h"
+using namespace std;
 int main(){
-    /*
+    ItemType item;
+    item.Initialize(3);
+    SortedLinkedList list;
+    list.insertItem(item);
+    //list.print();
+/*
     string userInput="";
     SortedLinkedList list;
     ItemType item;
@@ -37,3 +43,4 @@ int main(){
     }
     */
 }
+

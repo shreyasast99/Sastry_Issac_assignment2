@@ -1,4 +1,4 @@
-#ifndef SORTEDLINKEDLIST_H
+0;136;0c#ifndef SORTEDLINKEDLIST_H
 #define SORTEDLINKEDLIST_H
 #include <iostream>
 #include "ListNode.h"
@@ -6,6 +6,7 @@
 
 class SortedLinkedList{
 private:
+  int size; //length in powerpoint
   ListNode *head;
   ListNode *currentPos;
 public:
@@ -18,5 +19,6 @@ public:
   ItemType GetNextItem();
   void ResetList();
   void reverse();
+    void print();
 };
 #endif

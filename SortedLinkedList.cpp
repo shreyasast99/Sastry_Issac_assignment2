@@ -1,10 +1,13 @@
 #include "ListNode.h"
 #include "ItemType.h"
 #include "SortedLinkedList.h"
+#include <string>
+#include <iostream>
 ListNode* predLoc=NULL;
 ListNode* insert=NULL;
 ListNode* postLoc=NULL;
 
+using namespace std;
 //constructor 
 SortedLinkedList::SortedLinkedList(){
   size=0; //intializing the size into 0.
@@ -96,4 +99,12 @@ void SortedLinkedList::reverse(){
     currentPos=postLoc;
   }
   head=predLoc; //preLoc is the new header
+}
+void SortedLinkedList::print(){
+    currentPos=head;
+    for(int i=0; i<length();i++){
+        cout<<currentPos->item.getValue();
+        cout<<" ";
+        currentPos=currentPos->next;
+    }
 }

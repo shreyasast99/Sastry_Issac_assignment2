@@ -19,5 +19,6 @@ public:
   ItemType GetNextItem();
   void ResetList();
   void reverse();
+    void print();
 };
 #endif
