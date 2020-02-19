@@ -1,6 +1,8 @@
 #include "ListNode.h"
 #include "ItemType.h"
 #include "SortedLinkedList.h"
+ListNode* predLoc=NULL;
+ListNode* insert=NULL;
 SortedLinkedList::SortedLinkedList(){
   size=0; //intializing the size into 0.
   head=NULL;
@@ -14,10 +16,8 @@ int SortedLinkedList::length() const{
 }
 void SortedLinkedList::insertItem(ItemType item){
   currentPos=head; //setting to beginning of list
-  NodeList* predLoc=NULL;
-  NodeList* insert=NULL;
   insert->item=item; //setting the value of the item into new node
-  if(length!=0){
+  if(size!=0){
     while(currentPos!=NULL){
       predLoc=currentPos;
       currentPos=currentPos->next;
@@ -31,12 +31,12 @@ void SortedLinkedList::insertItem(ItemType item){
 	insert->next=predLoc;
       }
       //adding to end of the list
-      if((predLoc->item.ComparedTo(item)==LESS)&&(currentPos->item==NULL)){
+      if((predLoc->item.ComparedTo(item)==LESS)&&(currentPos==NULL)){
 	currentPos->item=item;
       }
     }
   }//if length!=0
-  if(length==0){ 
+  if(size==0){ 
     head->item=item; //setting the first value into head
   }
   /*
