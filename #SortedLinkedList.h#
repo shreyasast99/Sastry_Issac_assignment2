@@ -6,7 +6,6 @@
 
 class SortedLinkedList{
 private:
-  int size; //length in powerpoint
   ListNode *head;
   ListNode *currentPos;
 public:

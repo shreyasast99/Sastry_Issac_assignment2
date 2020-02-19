@@ -1,14 +1,23 @@
 #include "ItemType.h"
 #include  <iostream>
-RelationType Itemtype::ComparedTo(ItemType otherItem) const {
-    if  ( value  <  otherItem.value )
-        return  LESS;
-    else if (value  > otherItem.value )
-        return  GREATER;else  return  EQUAL;}
-void ItemType::Print ( ) const {
-    using namespace std;
-    cout  <<  value  <<  endl;
+
+//constructor
+ItemType::ItemType(){
 }
-void ItemType::Initialize ( int  number ){
-    value  =  number;
+//Comparison Method
+Comparison ItemType::ComparedTo(ItemType item){
+  if(value<item.value)
+    return LESS;
+  else if(value>item.value)
+    return  GREATER;
+  else
+    return EQUAL;
+}
+//returns the value of type ItemType
+int ItemType::getValue() const{
+  return value;
+}
+//intiializes the value into number
+void ItemType::Initialize(int num){
+    value=num;
 } 
