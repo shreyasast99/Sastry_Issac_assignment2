@@ -11,27 +11,28 @@ int main(int argc, char *argv[]){
    item.initialize(2);
     list.insertItem(item);
   */
-  /*
+  
     //item 2
     ItemType item2;
     item2.initialize(2);
     list.insertItem(item2);
-   
+    
     //item 3
       ItemType item3;
      item3.initialize(3);
      list.insertItem(item3);
-  */
+     
+  
      //item 4
      ItemType item4;
      item4.initialize(4);
      list.insertItem(item4);
-
+/*
       //item 5
      ItemType item5;
      item5.initialize(5);
      list.insertItem(item5);
-   
+     */
     list.print();    
     /*    
     string userInput="";

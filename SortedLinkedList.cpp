@@ -79,41 +79,46 @@ void SortedLinkedList::insertItem(ItemType item){
   currentPos=head;
   ListNode *insert=new ListNode;
   insert->item=item;
-  ListNode *location;
-  location=head;
+  
+  //location=head;
    
   //if list is not empty
   //cout<<"Current Position is Null? "<<currentPos->item.getValue()<<endl;
-    while(currentPos!=NULL){
+  while(currentPos!=NULL){
       predLoc=currentPos->next;
       //if inserting to the end
-      if(head->item.compareTo(insert->item)!=LESS){
-	insert->next=head;
-	head=insert;
-	//cout<<"current head: "<<head->item.getValue();
-	predLoc=currentPos->next;
+      if(head->item.compareTo(insert->item)!=GREATER){
+          insert->next=head;
+          head=insert;
+          //cout<<"current head: "<<head->item.getValue();
+          predLoc=currentPos->next;
       }
       else{
-	//      cout<<"hrhfsfj"<<endl;
-	currentPos=location;
-	while(currentPos->next!=NULL&&currentPos->next->item.compareTo(insert->item)==LESS){
-	  currentPos=currentPos->next;
-	}
-	insert->next=currentPos->next;
-	currentPos->next=insert;
+          //      cout<<"hrhfsfj"<<endl;
+          currentPos=head;
+          //currentPos=head;
+          while(currentPos->next!=NULL&&currentPos->next->item.compareTo(insert->item)!=LESS){
+              currentPos=currentPos->next;
+              cout<<"ijvjnsvsd"<<endl;
+              if(currentPos==NULL){
+                  break;
+              }
+          }
+          insert->next=currentPos->next;
+          currentPos->next=insert;
       }
       currentPos=predLoc;
-    }
-    
-    //if the list is empty
-    if(length()==0){
+  }
+  
+  //if the list is empty
+  if(length()==0){
       //cout<<"List was empty before"<<endl;
       head=insert;
       //current=head;
-    }
-    //head->next=location;
-    
-    size=size+1;
+  }
+  //head->next=location;
+  
+  size=size+1;
 }
 
 void SortedLinkedList::deleteItem(ItemType item){
