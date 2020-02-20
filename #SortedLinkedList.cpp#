@@ -114,15 +114,15 @@ int SortedLinkedList::searchItem(ItemType item){
   int count=-1;
   //iterates through the end
   if(size!=0){ //in case it is empty
-    while(currentPos->next!=NULL){
-      if(currentPos->item.compareTo(item)==EQUAL){
-	count++;
-	break;
+      while(currentPos->next!=NULL){
+          if(currentPos->item.compareTo(item)==EQUAL){
+              count++;
+              break;
+          }
+          else{
+              count++;
+          }
       }
-      else{
-	count++;
-      }
-    }
   }
   //if count is -1, then you know it will print "not found"
   return count;
