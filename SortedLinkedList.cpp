@@ -3,16 +3,16 @@
 #include "SortedLinkedList.h"
 #include <string>
 #include <iostream>
-ListNode* predLoc=NULL;
-ListNode* insert=NULL;
-ListNode* postLoc=NULL;
+ListNode* predLoc=new ListNode;
+//ListNode* insert=new ListNode;
+ListNode* postLoc=new ListNode;
 
 using namespace std;
 //constructor 
 SortedLinkedList::SortedLinkedList(){
   size=0; //intializing the size into 0.
-  head=NULL;
-  currentPos=NULL;
+  head=new ListNode;
+  currentPos=new ListNode;
 }
 
 //deallocates the memory: delete pointer in the main method
@@ -30,41 +30,48 @@ void SortedLinkedList::insertItem(ItemType item){
     if(searchItem(item)!=-1){
         cout<<"Sorry. You cannot insert the duplicate item"<<endl;
     }
-    //if the item has not been found (new item)
-    else{
-        currentPos=head; //setting to beginning of list
-        insert->item=item; //setting the value of the item into new node
-        if(size!=0){
-            while(currentPos!=NULL){
-                predLoc=currentPos;
-                currentPos=currentPos->next;
-                //if the position has been found; need to sandwich through
-                if((predLoc->item.compareTo(item)==LESS)&&(currentPos->item.compareTo(item)==GREATER)){
-                    predLoc->next=insert;
-                    insert->next=currentPos;
-                }
-                //if it needs to be added in beginning (first sorted is greater than item wanted to add)
-                if((predLoc->item.compareTo(item)==GREATER)&&(currentPos->item.compareTo(item)==GREATER)){
-                    insert->next=predLoc;
-                }
-                /*
-                //adding to end of the list
-                if((predLoc->item.compareTo(item)==LESS)&&(currentPos==NULL)){
-                    currentPos->item=item;
-                }
-                */
-            }
-        }//if length!=0
-        if(size==0){ 
-            head->item=item; //setting the first value into head
-        }
-        //adding to end of the list
-        if((predLoc->item.compareTo(item)==LESS)&&(currentPos==NULL)){
-            currentPos->item=item;
-        }
 
-        size++; //need to increment value
-    }
+    
+    //if the item has not been found (new item    
+    else{
+      ListNode* insert=new ListNode; 
+      currentPos=head; //setting to beginning of list
+      insert->item=item; //setting the value of the item into new node
+      
+      if(size!=0){
+	while(currentPos!=NULL){
+
+	  /*
+	    predLoc=currentPos;
+	    currentPos=currentPos->next;
+	  
+	  //if the position has been found; need to sandwich through
+	  if((predLoc->item.compareTo(item)==LESS)&&(currentPos->item.compareTo(item)==GREATER)){
+	    predLoc->next=insert;
+	    insert->next=currentPos;
+	  }
+	  //if it needs to be added in beginning (first sorted is greater than item wanted to add)
+	  if((predLoc->item.compareTo(item)==GREATER)&&(currentPos->item.compareTo(item)==GREATER)){
+	    insert->next=predLoc;
+	    head=insert; 
+	  }
+	  */
+	}//while loop
+      
+	//once we reach the end of the list
+	if((predLoc->item.compareTo(item)==LESS)&&(currentPos==NULL)){
+	  currentPos->item=item;
+	}
+	
+	
+      }//if length!=0
+          
+      if(size==0){ 
+	head->item=item; //setting the first value into head
+      }
+      size++; //need to increment value
+      
+    } //if it is not a duplicate
 }
 
 void SortedLinkedList::deleteItem(ItemType item){
