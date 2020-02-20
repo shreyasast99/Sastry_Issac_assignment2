@@ -11,10 +11,10 @@ main.out: main.o ItemType.o SortedLinkedList.o
 main.o: main.cpp
 	$(CC) $(CFLAGS) main.cpp
 
-ItemType.o: ItemType.cpp ItemType.h
+ItemType.o: ItemType.cpp ItemType.h ListNode.h
 	$(CC) $(CFLAGS) ItemType.cpp
 
-SortedLinkedList.o: SortedLinkedList.cpp SortedLinkedList.h
+SortedLinkedList.o: SortedLinkedList.cpp SortedLinkedList.h ItemType.h
 	$(CC) $(CFLAGS) SortedLinkedList.cpp
 
 run: main.out

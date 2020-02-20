@@ -1,6 +1,8 @@
 #include "ItemType.h"
 #include  <iostream>
 
+using namespace std;
+
 //constructor
 ItemType::ItemType(){
 }
@@ -15,6 +17,7 @@ Comparison ItemType::compareTo(ItemType item){
 }
 //returns the value of type ItemType
 int ItemType::getValue() const{
+  cout<<"value :" << value << endl;
   return value;
 }
 //intiializes the value into number

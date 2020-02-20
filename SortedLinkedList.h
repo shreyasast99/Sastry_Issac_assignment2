@@ -2,7 +2,6 @@
 #define SORTEDLINKEDLIST_H
 #include <iostream>
 #include "ListNode.h"
-#include "ItemType.h"
 
 class SortedLinkedList{
 private:
