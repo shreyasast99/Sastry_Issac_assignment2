@@ -25,8 +25,8 @@ int SortedLinkedList::length() const{
 
 //inserts item: beginning, middle, or end; and it the list is empty
 void SortedLinkedList::insertItem(ItemType item){
-  
-  /*  //if the item has been found
+  /*  
+    //if the item has been found
     if(searchItem(item)!=-1){
         cout<<"Sorry. You cannot insert the duplicate item"<<endl;
     }
@@ -34,7 +34,7 @@ void SortedLinkedList::insertItem(ItemType item){
     
     //if the item has not been found (new item    
     else{
-      ListNode* insert=new ListNode; 
+      ListNode* insert=new ListNode;
       currentPos=head; //setting to beginning of list
       insert->item=item; //setting the value of the item into new node
       
@@ -71,60 +71,49 @@ void SortedLinkedList::insertItem(ItemType item){
       size++; //need to increment value
       
     } //if it is not a duplicate
-*/
-    //head=NULL;
-  //  currentPos=head;
+
+  */
+
+    
+  //head=NULL;
+  currentPos=head;
   ListNode *insert=new ListNode;
   insert->item=item;
   ListNode *location;
   location=head;
+   
   //if list is not empty
+  //cout<<"Current Position is Null? "<<currentPos->item.getValue()<<endl;
     while(currentPos!=NULL){
-      // predLoc=currentPos->next;
-      //if insertting to the beginning
-    if(head->item.compareTo(insert->item)==LESS){
-      insert->next=location;
-      location=insert;
       predLoc=currentPos->next;
-      cout<<"hfrufhu";
-
-    }
-    else{
-      //      cout<<"hrhfsfj"<<endl;
-      currentPos=location;
-      while(currentPos->next!=NULL&&currentPos->next->item.compareTo(insert->item)==LESS){
-	currentPos=currentPos->next;
+      //if inserting to the end
+      if(head->item.compareTo(insert->item)!=LESS){
+	insert->next=head;
+	head=insert;
+	//cout<<"current head: "<<head->item.getValue();
+	predLoc=currentPos->next;
       }
-      insert->next=currentPos->next;
-      currentPos->next=insert;
-    }
-    currentPos=predLoc;
-  }
-  
-  /*
-  ListNode *insert1;
-  ListNode *predLoc2;
-  predLoc2=NULL;
-  // bool moreToSearch=true;
-  if(length()!=0)
-    {
-      while(item.compareTo(head->item)!=LESS)
-	{
-	  predLoc=head;
-	  head=head->next;
-	  //  moreToSearch=false;
-	  
+      else{
+	//      cout<<"hrhfsfj"<<endl;
+	currentPos=location;
+	while(currentPos->next!=NULL&&currentPos->next->item.compareTo(insert->item)==LESS){
+	  currentPos=currentPos->next;
 	}
-      predLoc1
-  */     
-      //if the list is empty
-    if(length()==0){
-         cout<<"List was empty before"<<endl;
-	 head=insert;
+	insert->next=currentPos->next;
+	currentPos->next=insert;
+      }
+      currentPos=predLoc;
     }
-    head->next=location;
     
-  size=size+1;
+    //if the list is empty
+    if(length()==0){
+      //cout<<"List was empty before"<<endl;
+      head=insert;
+      //current=head;
+    }
+    //head->next=location;
+    
+    size=size+1;
 }
 
 void SortedLinkedList::deleteItem(ItemType item){
@@ -214,11 +203,18 @@ void SortedLinkedList::reverse(){
   head=predLoc; //preLoc is the new header
 }
 void SortedLinkedList::print(){
+  cout<<"This is the print Function"<<endl;
   currentPos=head;
-  while(currentPos!=NULL&&length()!=0){
+  /*
+  cout<<"This is head item: "<<head->item.getValue()<<endl;;
+  cout<<"Head next: "<<head->next->item.getValue()<<endl;
+  */
+  
+  for(int i=0;i<length();i++){
     cout<<currentPos->item.getValue()<<" ";
     currentPos=currentPos->next;
   }
+  
   /*currentPos=head;
     cout<<"List: "<<endl;
     cout<<"Length: "<<length();
