@@ -4,9 +4,9 @@
 ListNode* predLoc=new ListNode;
 //ListNode* insert=new ListNode;
 ListNode* postLoc=new ListNode;
-
 using namespace std;
 //constructor 
+
 SortedLinkedList::SortedLinkedList(){
   size=0; //intializing the size into 0.
   head=new ListNode;
@@ -28,17 +28,15 @@ void SortedLinkedList::insertItem(ItemType item){
   currentPos=head;
   ListNode *insert=new ListNode;
   insert->item=item;
-
+  
   
   //checking if there is duplicates
   //cout<<"Search Item: "<<searchItem(item)<<endl;
-  /*
+  //cout<<"Search Item: "<<searchItem(item)<<endl;
   if(searchItem(item)!=-1){
       cout<<"Sorry You cannot have duplicate"<<endl;
-   }
- 
+  }  
   else{
-  */
       //if the list is not empty
       while(currentPos!=NULL){
           //predLoc=currentPos;
@@ -84,8 +82,8 @@ void SortedLinkedList::insertItem(ItemType item){
       //head->next=location;
       
       size=size+1;
-      //}
-      currentPos=head;
+  }
+  currentPos=head;
 }
 
 void SortedLinkedList::deleteItem(ItemType item){
@@ -137,21 +135,53 @@ int SortedLinkedList::searchItem(ItemType item){
   while(currentPos!=NULL){
       count=count+1;
       //cout<<"Current Position: "<<currentPos->item.getValue()<<" Count: "<<count<<endl;
-      if(currentPos->item.getValue()==item.getValue()){
+      if(currentPos->item.compareTo(item)==EQUAL){
+          currentPos=head;
           return count;
       }
       else{
           currentPos=currentPos->next;
       }
   }
-  return -1;
   currentPos=head;
+  return -1;
+  
 }
 
 //returns the next item
 ItemType SortedLinkedList::GetNextItem(){
-  currentPos=currentPos->next;
-  return currentPos->item;
+    /*  if(currentPos->next==NULL){
+        cout<<"The end of the list has reached"<<endl;
+        currentPos->next=head;
+        
+    }
+    else if(length()==0){
+        ItemType temp;
+        temp.initialize(-1);
+        return temp;
+        //cout<<"List is empty"<<endl;
+    }
+    else{
+        currentPos=currentPos->next;        
+    }
+    return currentPos->item;
+    */
+    ItemType nextPos;
+    //nxtNode=currentPos;
+    if(currentPos==NULL)
+    {
+        cout<<"hewrfjekk";
+        currentPos=head;
+    }
+    else
+    {
+        currentPos=currentPos->next;
+        cout<<nxtNode-item.getValue();
+    }
+    currentPos=currentPos;
+    nextPos=currentPos->item;
+    
+    return nextPos;
 }
 
 
@@ -176,7 +206,7 @@ void SortedLinkedList::reverse(){
   currentPos=head;
 }
 void SortedLinkedList::print(){
-  cout<<"This is the print Function"<<endl;
+    //cout<<"This is the print Function"<<endl;
   currentPos=head;
   /*
   cout<<"This is head item: "<<head->item.getValue()<<endl;;

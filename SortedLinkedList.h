@@ -9,15 +9,15 @@ private:
   ListNode *head;
   ListNode *currentPos;
 public:
-  SortedLinkedList();
-  ~SortedLinkedList();
-  int length() const;
-  void insertItem(ItemType item);
-  void deleteItem(ItemType item);
-  int searchItem(ItemType item);
-  ItemType GetNextItem();
-  void ResetList();
-  void reverse();
+    SortedLinkedList();
+    ~SortedLinkedList();
+    int length() const;
+    void insertItem(ItemType item);
+    void deleteItem(ItemType item);
+    int searchItem(ItemType item);
+    ItemType GetNextItem();
+    void ResetList();
+    void reverse();
     void print();
 };
 #endif
