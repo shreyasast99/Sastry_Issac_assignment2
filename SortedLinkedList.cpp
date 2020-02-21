@@ -85,6 +85,7 @@ void SortedLinkedList::insertItem(ItemType item){
       
       size=size+1;
       //}
+      currentPos=head;
 }
 
 void SortedLinkedList::deleteItem(ItemType item){
@@ -126,6 +127,7 @@ void SortedLinkedList::deleteItem(ItemType item){
     }
     size--; //size decreases if we delete an item
   }
+    currentPos=head;
 }
 
 //returns the index as to where the item is found. If not foudn,returns -1
@@ -134,7 +136,8 @@ int SortedLinkedList::searchItem(ItemType item){
   int count=-1;
   while(currentPos!=NULL){
       count=count+1;
-      if(currentPos->item.compareTo(item)==EQUAL){
+      //cout<<"Current Position: "<<currentPos->item.getValue()<<" Count: "<<count<<endl;
+      if(currentPos->item.getValue()==item.getValue()){
           return count;
       }
       else{
@@ -142,6 +145,7 @@ int SortedLinkedList::searchItem(ItemType item){
       }
   }
   return -1;
+  currentPos=head;
 }
 
 //returns the next item
@@ -154,6 +158,7 @@ ItemType SortedLinkedList::GetNextItem(){
 void SortedLinkedList::ResetList(){
   size=0;
   head=NULL;
+  currentPos=NULL;
 }
 
 //reverses the linked list function 
@@ -168,6 +173,7 @@ void SortedLinkedList::reverse(){
     currentPos=postLoc;
   }
   head=predLoc; //preLoc is the new header
+  currentPos=head;
 }
 void SortedLinkedList::print(){
   cout<<"This is the print Function"<<endl;
@@ -177,9 +183,9 @@ void SortedLinkedList::print(){
   cout<<"Head next: "<<head->next->item.getValue()<<endl;
   */
 
-  cout<<"Hasn't gone through the for loop"<<endl;
-  cout<<"Length 5= "<<length()<<endl;
-  cout<<head->item.getValue()<<endl;
+  //cout<<"Hasn't gone through the for loop"<<endl;
+  //cout<<"Length 5= "<<length()<<endl;
+  //cout<<head->item.getValue()<<endl;
   for(int i=0;i<length();i++){
     cout<<currentPos->item.getValue()<<" ";
     currentPos=currentPos->next;
@@ -202,4 +208,5 @@ void SortedLinkedList::print(){
       }
     }
     */
+  currentPos=head;
 }

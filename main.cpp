@@ -8,31 +8,49 @@ int main(int argc, char *argv[]){
   SortedLinkedList list;
  
     ItemType item;
-    item.initialize(4);
+    item.initialize(1);
     list.insertItem(item);
+    //cout<<"Item 1: "<<list.searchItem(item)<<endl;
 
     //item 3
       ItemType item3;
-     item3.initialize(2);
+     item3.initialize(1);
      list.insertItem(item3);
+     //cout<<"Item 2: "<<list.searchItem(item3)<<endl;
     
     //item 2
     ItemType item2;
-    item2.initialize(1);
+    item2.initialize(2);
     list.insertItem(item2);
+    //cout<<"Item 3: "<<list.searchItem(item2)<<endl;
 
     
      //item 4
      ItemType item4;
-     item4.initialize(5);
+     item4.initialize(3);
      list.insertItem(item4);
+     //cout<<"Item 4: "<<list.searchItem(item4)<<endl;
 
       //item 5
      ItemType item5;
-     item5.initialize(1);
+     item5.initialize(4);
      list.insertItem(item5);
-     
-    list.print();    
+
+     cout<<"Search "<<list.searchItem(item5)<<endl;
+
+    list.print();
+    list.reverse();
+    list.print();
+    list.deleteItem(item5);
+    list.print();
+    list.deleteItem(item2);
+    list.print();
+    list.deleteItem(item4);
+    list.print();
+
+    //cout<<"Get Next Item: "<<list.GetNextItem().getValue();
+    //list.GetNextItem();
+    //list.GetNextItem();
     /*    
     string userInput="";
     //SortedLinkedList list;
