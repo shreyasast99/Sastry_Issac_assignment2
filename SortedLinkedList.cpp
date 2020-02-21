@@ -16,6 +16,11 @@ SortedLinkedList::SortedLinkedList(){
 
 //deallocates the memory: delete pointer in the main method
 SortedLinkedList::~SortedLinkedList(){
+    delete predLoc;
+    delete postLoc;
+    delete currentPos;
+    delete head;
+    
 }
 
 //returns the length of the linked list
@@ -34,7 +39,7 @@ void SortedLinkedList::insertItem(ItemType item){
   //cout<<"Search Item: "<<searchItem(item)<<endl;
   //cout<<"Search Item: "<<searchItem(item)<<endl;
   if(searchItem(item)!=-1){
-      cout<<"Sorry You cannot have duplicate"<<endl;
+      cout<<"Sorry. You cannot insert the duplicate item"<<endl;
   }  
   else{
       //if the list is not empty
@@ -166,28 +171,55 @@ ItemType SortedLinkedList::GetNextItem(){
     }
     return currentPos->item;
     */
-    ItemType nextPos;
+    //ItemType nextPos;
     //nxtNode=currentPos;
+
+
+    if(length()==0){
+        cout<<"List Is Empty"<<endl;
+    }
+    else{
+        currentPos=currentPos->next;
+        if(currentPos==NULL){
+            cout<<"The end of the list has reached"<<endl;
+            currentPos=head; //reiterates to the beginning
+        }
+        return currentPos->item;
+    }
+
+    
+    /*
+    cout<<"PRINTING ALL ELEMENTS"<<endl;
+    if(currentPos->item.compareTo(head->item)==EQUAL){
+        cout<<"current pos is the same as head"<<endl;
+    }
+    cout<<length()<<endl;
+    for(int i=0;i<length();i++){
+        cout<<currentPos->item.getValue();
+        currentPos=currentPos->next;
+    }
+    
     if(currentPos==NULL)
     {
-        cout<<"hewrfjekk";
+        //cout<<"hewrfjekk";
         currentPos=head;
     }
     else
     {
         currentPos=currentPos->next;
-        cout<<nxtNode-item.getValue();
+        cout<<"Next item: "<<currentPos->item.getValue();
     }
-    currentPos=currentPos;
-    nextPos=currentPos->item;
+    //currentPos=currentPos;
+    //nextPos=currentPos->item;
     
-    return nextPos;
+    //return currentPos->item;
+    */
 }
 
 
 void SortedLinkedList::ResetList(){
   size=0;
-  head=NULL;
+  //head=NULL;
   currentPos=NULL;
 }
 
