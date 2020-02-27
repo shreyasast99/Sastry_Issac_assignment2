@@ -73,14 +73,16 @@ int main(int argc, char *argv[]){
         return 0;
     }
     
-    while(userInput.compare("q")!=0){
-        cout<<"commands:\n(i) - Insert value\n(d) - Delete value\n(s) - Search value\n(n) - Print next iterator value\n(r) - Reset iterator\n(p) - Print list\n(l) - Print length\n(b) - Reverse\n(q) - Quit program"<<endl;
-
-        cout<<"Enter a command: ";
+   
+        cout<<"Commands:\n\n(i) - Insert value\n(d) - Delete value\n(s) - Search value\n(n) - Print next iterator value\n(r) - Reset iterator\n(p) - Print list\n(l) - Print length\n(b) - Reverse\n(q) - Quit program"<<endl;
+while(userInput.compare("q")!=0){
+        cout<<"\nEnter a command: ";
         cin>>userInput;
         cout<<endl;
-        list.print(); //prints the list
-        cout<<endl;
+        if((userInput.compare("p")!=0)&&(userInput.compare("s")!=0)&&(userInput.compare("n")!=0)){
+            list.print(); //prints the list
+            cout<<endl;
+        }
         ItemType temp;
         //insert value
         if(userInput.compare("i")==0){
@@ -132,11 +134,11 @@ int main(int argc, char *argv[]){
             list.print();
             cout<<endl;
             list.reverse();
-            cout<<"After";
+            cout<<"After"<<endl;
             list.print();
         }
         else if(userInput.compare("q")==0){
-            cout<<"Quitting prorgam";
+            cout<<"Quitting prorgam...";
         }
         //invalid command
         else{
@@ -145,6 +147,6 @@ int main(int argc, char *argv[]){
         cout<<endl;
     }
     //~SortedLinkedList();
-   
+
 }
 

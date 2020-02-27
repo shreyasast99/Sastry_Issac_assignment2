@@ -18,7 +18,7 @@ SortedLinkedList.o: SortedLinkedList.cpp SortedLinkedList.h ItemType.h
 	$(CC) $(CFLAGS) SortedLinkedList.cpp
 
 run: main.out
-	./main.out input.txt
+	./main.out input.txt 
 
 clean:
 	rm *.o main.out
